@@ -10,6 +10,7 @@ router.register(r'booking', views.BookingViewset, basename='booking')
 router.register(r'review', views.ReviewViewset, basename='review')
 router.register(r'listing', views.ListingViewset, basename='listing')
 router.register(r'payment', views.PaymentViewset, basename='payment')
+router.register(r'users', views.UserViewset, basename='users')
 
 
 urlpatterns =[

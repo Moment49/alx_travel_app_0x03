@@ -2,13 +2,18 @@ from rest_framework.views import APIView, status
 from rest_framework.decorators import api_view, permission_classes, action, authentication_classes
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .serializers import ReviewSerializer, BookingSerializer, ListingSerializer, PaymentSerializer
+from .serializers import ReviewSerializer, BookingSerializer, ListingSerializer, PaymentSerializer, UserSerializer
 from .models import Listing, Booking, Review, Payment
 from .tasks import send_booking_confirmation_email
 import os
 import requests
+from django.contrib.auth.models import User
 
 # Create your views here.
+
+class UserViewset(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class ListingViewset(viewsets.ModelViewSet):
     queryset = Listing.objects.all()

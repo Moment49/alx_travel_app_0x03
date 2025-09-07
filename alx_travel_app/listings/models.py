@@ -4,7 +4,7 @@ import uuid
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Q
 from django.conf import settings
-from .models import Booking
+
 
 # Create your models here.
 
