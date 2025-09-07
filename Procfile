@@ -1,1 +1,1 @@
-web: gunicorn alx_travelapp.alx_travel_app.wsgi:application
+web: gunicorn alx_travel_app.alx_travel_app.wsgi:application
