@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -euo pipefail
+
+set -o errexit
 
 echo "Installing Python dependencies..."
 pip install -r requirements.txt
