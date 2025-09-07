@@ -112,9 +112,10 @@ WSGI_APPLICATION = 'alx_travel_app.wsgi.application'
 #     }
 # }
 
+import dj_database_url
 
 DATABASES = {
-    'default': env.db(default=f"{env('POSTGRES_ENGINE')}://{env('POSTGRES_USER')}:{env('POSTGRES_PASSWORD')}@{env('POSTGRES_HOST')}:{env('POSTGRES_PORT')}/{env('POSTGRES_DB')}")
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
 }
 
 # REST_FRAMEWORK = {
