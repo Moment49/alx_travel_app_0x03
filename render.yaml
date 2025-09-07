@@ -1,24 +1,25 @@
 databases:
   - name: travel-db
-    databaseName: travel_db
+    databaseName: travel_app_db
     user: travel_user
     plan: free
-    region: frankfurt   # or oregon / any region close to you
+    region: frankfurt
 
 services:
   - type: web
     name: alx-travel-app
     env: python
     plan: free
-    region: frankfurt   # must match database region
+    region: frankfurt
+    branch: main
     buildCommand: |
       pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-      python manage.py migrate
+      python alx_travel_app/manage.py collectstatic --noinput
+      python alx_travel_app/manage.py migrate
     startCommand: gunicorn alx_travel_app.wsgi:application
     envVars:
       - key: DEBUG
-        value: False
+        value: "False"
       - key: SECRET_KEY
         sync: false
       - key: CHAPA_SECRET_KEY
@@ -27,17 +28,21 @@ services:
         fromDatabase:
           name: travel-db
           property: connectionString
+      - key: ALLOWED_HOSTS
+        value: "alx-travel-app.onrender.com"
 
   - type: worker
     name: celery-worker
     env: python
     plan: free
     region: frankfurt
+    repo: <GITHUB_REPO_URL>
+    branch: main
     buildCommand: pip install -r requirements.txt
     startCommand: celery -A alx_travel_app worker --loglevel=info
     envVars:
       - key: DEBUG
-        value: False
+        value: "False"
       - key: SECRET_KEY
         sync: false
       - key: CHAPA_SECRET_KEY
