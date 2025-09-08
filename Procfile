@@ -1,1 +1,1 @@
-gunicorn alx_travel_app.alx_travel_app.wsgi:application --env DJANGO_SETTINGS_MODULE=alx_travel_app.alx_travel_app.settings
+web: PYTHONPATH=alx_travel_app gunicorn alx_travel_app.alx_travel_app.wsgi:application --env DJANGO_SETTINGS_MODULE=alx_travel_app.alx_travel_app.settings
