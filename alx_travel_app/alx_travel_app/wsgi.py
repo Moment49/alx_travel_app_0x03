@@ -11,6 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alx_travel_app.alx_travel_app.settings')
+# Try the single path first (works locally), then fallback for Render
+try:
+    import alx_travel_app.settings
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alx_travel_app.settings')
+except ModuleNotFoundError:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alx_travel_app.alx_travel_app.settings')
 
 application = get_wsgi_application()
